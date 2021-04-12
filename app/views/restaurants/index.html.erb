@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>餐廳列表</h1>
+
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">標題</th>
+        <th scope="col">電話</th>
+        <th scope="col">動作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @restaurants.each do |restaurant| %>
+        <tr>
+          <td><%= restaurant.title %></td>
+          <td><%= restaurant.tel %></td>
+          <td class="d-flex">
+            <%= link_to "檢視", restaurant_path(restaurant), class: "btn btn-outline-dark me-auto" %>
+            <%= link_to "編輯", edit_restaurant_path(restaurant), class: "btn btn-outline-dark me-auto" %>
+            <%
+              # "data-method": "delete", "data-confirm": "確定刪除？"
+              # = data: {method: "delete", confirm: "確定刪除？"}
+            %>
+            <%= link_to "刪除", restaurant_path(restaurant), data: {method: "delete", confirm: "確定刪除？"}, class: "btn btn-outline-dark me-auto" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to '新增餐廳', new_restaurant_path %>
+</div>
