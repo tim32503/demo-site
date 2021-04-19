@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
 
   before_action :find_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :check_user!, except: [:index, :show]
 
   def index 
     @restaurants = Restaurant.all
@@ -49,5 +50,4 @@ class RestaurantsController < ApplicationController
     def restaurant_params
       params.require(:restaurant).permit(:title, :address, :tel, :email, :description)
     end
-
 end

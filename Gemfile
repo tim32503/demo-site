@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 # 自行安裝的 paranoia 套件
 gem 'paranoia', '~> 2.4', '>= 2.4.3'
+gem 'figaro', '~> 1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
