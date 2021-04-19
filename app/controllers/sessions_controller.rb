@@ -1,16 +1,20 @@
 class SessionsController < ApplicationController
+
   def new
     @user = User.new
   end
 
   def create
-    if User.login(user_params)
+    user = User.login(user_params
+    )
+    if user
+      # 發號碼牌
+      seesion[:thankyou9527] = user.identifiable
+      # 轉去首頁
       redirect_to root_path
     else
-      render :new
+      redirect_to sign_in_sessions_path
     end
-    # 1 查有無帳號/密碼
-    # 2 轉址/重登
   end
 
   private

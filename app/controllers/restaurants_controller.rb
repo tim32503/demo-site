@@ -3,7 +3,10 @@ class RestaurantsController < ApplicationController
   before_action :find_restaurant, only: [:show, :edit, :update, :destroy]
 
   def index 
-    @restaurants = Restaurant.where(deleted_at: nil).order(id: :desc)
+    @restaurants = Restaurant.all
+  end
+
+  def show
   end
 
   def new
@@ -14,18 +17,13 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
 
     if @restaurant.save
-      redirect_to "/restaurants"
+      redirect_to restaurants_path
     else
       render :new
     end
-
-  end
-
-  def show
   end
 
   def edit
-    @restaurant
   end
 
   def update
