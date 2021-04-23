@@ -13,6 +13,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :restaurants
+  resources :restaurants do
+    resources :comments, shallow: true, only: [:create, :destroy] # 等同下方註解掉的兩行code
+    # resources :comments, only: [:index, :new, :create]
+  end
+  # resources :comments, except: [:index, :new, :create]
+  # = resources :comments, only: [:show, :update, :edit, :destroy]
+
   root "restaurants#index"
 end

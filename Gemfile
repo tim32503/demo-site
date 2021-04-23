@@ -35,6 +35,7 @@ gem 'figaro', '~> 1.2'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'foreman', '~> 0.87.2' # 自行安裝 foreman s -f Procfile.dev
 end
 
 group :development do

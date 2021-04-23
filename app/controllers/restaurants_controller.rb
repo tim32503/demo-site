@@ -8,6 +8,9 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    @restaurant = Restaurant.find(params[:id])
+    @comment = @restaurant.comments.new
+    @comments = @restaurant.comments.order(id: :desc)
   end
 
   def new
@@ -15,7 +18,10 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
+    # @restaurant = Restaurant.new(restaurant_params)
+    # @restaurant.user = current_user
+
+    @restaurant = current_user.restaurants.new(restaurant_params)
 
     if @restaurant.save
       redirect_to restaurants_path
@@ -44,7 +50,14 @@ class RestaurantsController < ApplicationController
 
   private
     def find_restaurant
-      @restaurant = Restaurant.find(params[:id])
+      # 第一種方法
+      # @restaurant = Restaurant.find_by!(
+      #   id: params[:id],
+      #   user_id: current_user.id
+      # )
+
+      # 第二種方法
+      @restaurant = current_user.restaurants.find(params[:id])
     end
 
     def restaurant_params
